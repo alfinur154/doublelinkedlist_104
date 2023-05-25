@@ -139,5 +139,77 @@ void DoubleLinkedlist::retraverse() {
 void DoubleLinkedlist::hapus() {
     if (listEmpty()) {
         cout << "\nList is empty" << endl;
+
+    }
+    cout << "\nEnter the roll nuber of the student whose record is to be deleted: ";
+    int rollNo;
+    cin >> rollNo;
+    cout << endl;
+    if (DoubleLinkedlist::deleteNode(rollNo) == false)
+        cout << "Record not found" << endl;
+    else
+        cout << "Record with roll number " << rollNo << " deleted" << endl;
+}
+void DoubleLinkedlist::searchData() {
+    if (listEmpty() == true) {
+        cout << "\nList is empty" << endl;
+
+    }
+    Node* prev, * curr;
+    prev = curr = NULL;
+    cout << "\nEnter the roll number of the student whose record you want to search: ";
+    int num;
+    cin >> num;
+    if (DoubleLinkedlist::search(num, &prev, &curr) == false)
+        cout << "\nRecord not found" << endl;
+    else {
+        cout << "\nRecord found" << endl;
+        cout << " \nRoll number: " << curr->noMhs << endl;
+        cout << "\nName: " << curr->name << endl;
+    }
+}
+
+int main() {
+    DoubleLinkedlist obj;
+    while (true) {
+        try {
+            cout << "\nMenu" << endl;
+            cout << "1. Add a record to the list" << endl;
+            cout << "2. Delete a record from the list" << endl;
+            cout << "3. view all records in the ascending order of roll numbers" << endl;
+            cout << "4. view all records in the descending order of roll numbers" << endl;
+            cout << "5. Search for a record in the list" << endl;
+            cout << "6. Exit" << endl;
+            cout << "\nEnter your choice (1-6): ";
+            char ch;
+            cin >> ch;
+
+            switch (ch) {
+            case '1':
+                obj.addNode();
+                break;
+            case '2':
+                obj.hapus();
+                break;
+            case '3':
+                obj.traverse();
+                break;
+            case '4':
+                obj.retraverse();
+                break;
+            case '5':
+                obj.searchData();
+                break;
+            case '6':
+                return 0;
+            default:
+                cout << "\nInvalid option" << endl;
+                break;
+                    
+            }
+        }
+        catch (exception& e) {
+            cout << "Check for the values entered." << endl;
+        }
     }
 }
