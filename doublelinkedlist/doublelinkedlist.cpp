@@ -8,7 +8,7 @@ public:
     string name;
     Node* next;
     Node* prev;
-};
+};  
 
 class DoubleLinkedlist {
 private:
@@ -93,10 +93,29 @@ bool DoubleLinkedlist::deleteNode(int rollNo) {
     if (current->next != NULL)
         current->next->prev = previous;                 //step 2
     if (previous != NULL)
-        previous->next = current->next;                 //step 3
+        previous->next = current->next;    //step 3
+    else
+        START = current->next;
 
     delete current;                 //step 4
     return true;
-
 }
+
+bool DoubleLinkedlist::listEmpty() {
+    return (START == NULL);
+}
+
+void DoubleLinkedlist::traverse() {
+    if (listEmpty())
+        cout << "\nList is empty" << endl;
+    else {
+        cout << "nRecords in ascending order of roll numer are:" << endl;
+        Node* currentNode = START;
+        while (currentNode != NULL) {
+            cout << currentNode->noMhs << " " << currentNode->name << endl;
+            currentNode = currentNode->next;
+        }       
+    }
+}
+
 
