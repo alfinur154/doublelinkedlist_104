@@ -80,27 +80,23 @@ bool DoubleLinkedlist::search(int rollNo, Node** previous, Node** current) {
     *current = START;  //step 1.b
     while (*current != NULL && rollNo != (*current)->noMhs) {  //step 1.c
         *previous = *current; //step 1.d
-        *current = (*current)->next;
+        *current = (*current)->next;  //step 1.e
     }
     return (*current != NULL);
 }
 
 bool DoubleLinkedlist::deleteNode(int rollNo) {
     Node* previous, * current;
-    previous = current =
-}
-int main()
-{
-    std::cout << "Hello World!\n";
+    previous = current = NULL;
+    if (search(rollNo, &previous, &current) == false)
+        return false;
+    if (current->next != NULL)
+        current->next->prev = previous;                 //step 2
+    if (previous != NULL)
+        previous->next = current->next;                 //step 3
+
+    delete current;                 //step 4
+    return true;
+
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
