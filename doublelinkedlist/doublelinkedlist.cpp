@@ -22,9 +22,12 @@ public:
     void traverse();
     void retraverse();
     void hapus();
-    void searchData;
-
+    void searchData();
 };
+
+DoubleLinkedlist::DoubleLinkedlist() {
+    START = NULL;
+}
 
 int main()
 {
