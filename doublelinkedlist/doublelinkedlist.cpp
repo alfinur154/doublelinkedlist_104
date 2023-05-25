@@ -10,6 +10,11 @@ public:
     Node* prev;
 };
 
+class DoubleLinkedlist {
+private:
+    Node* START;
+
+};
 
 int main()
 {
